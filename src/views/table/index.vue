@@ -92,12 +92,11 @@ export default class Table extends Vue {
     this.fetchData()
   }
 
-  private fetchData() {
+  private async fetchData() {
     this.listLoading = true
-    getList(this.listQuery).then((response) => {
-      this.list = response.data.items
-      this.listLoading = false
-    })
+    const data: any = await getList(this.listQuery)
+    this.list = data.items
+    this.listLoading = false
   }
 }
 </script>

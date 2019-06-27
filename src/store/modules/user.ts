@@ -1,5 +1,5 @@
 import { VuexModule, Module, MutationAction, Mutation, Action, getModule } from 'vuex-module-decorators'
-import { login, logout, getUserInfo } from '@/api/login'
+import { login, logout, getInfo, IloginForm } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import store from '@/store'
 
@@ -18,11 +18,11 @@ class User extends VuexModule implements IUserState {
   public roles = [];
 
   @Action({ commit: 'SET_TOKEN' })
-  public async Login(userInfo: { username: string, password: string}) {
-    const username = userInfo.username.trim()
-    const { data } = await login(username, userInfo.password)
-    setToken(data.token)
-    return data.token
+  public async Login(userInfo: IloginForm) {
+    const data: any = await login(userInfo)
+    const { token } = data
+    setToken(token)
+    return token
   }
 
   @Action({ commit: 'SET_TOKEN' })
@@ -37,7 +37,7 @@ class User extends VuexModule implements IUserState {
     if (token === undefined) {
       throw Error('GetUserInfo: token is undefined!')
     }
-    const { data } = await getUserInfo(token)
+    const data: any = await getInfo(token)
     if (data.roles && data.roles.length > 0) {
       return {
         roles: data.roles,

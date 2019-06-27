@@ -1,24 +1,29 @@
 import request from '@/utils/request'
 
-export const login = (username: string, password: string) =>
-  request({
+export interface IloginForm {
+  username: string,
+  password: string
+}
+
+export function login(data: IloginForm) {
+  return request({
     url: '/user/login',
     method: 'post',
-    data: {
-      username,
-      password
-    }
+    data
   })
+}
 
-export const getUserInfo = (token: string) =>
-  request({
+export function getInfo(token: string) {
+  return request({
     url: '/user/info',
     method: 'get',
     params: { token }
   })
+}
 
-export const logout = () =>
-  request({
+export function logout() {
+  return request({
     url: '/user/logout',
     method: 'post'
   })
+}

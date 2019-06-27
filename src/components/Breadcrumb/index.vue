@@ -1,21 +1,12 @@
 <template>
-  <el-breadcrumb
-    class="app-breadcrumb"
-    separator="/"
-  >
+  <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item
-        v-for="(item, index) in breadcrumbs"
-        :key="item.path"
-      >
+      <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
         <span
           v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
           class="no-redirect"
         >{{ item.meta.title }}</span>
-        <a
-          v-else
-          @click.prevent="handleLink(item)"
-        >{{ item.meta.title }}</a>
+        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -43,7 +34,7 @@ export default class Breadcrumb extends Vue {
     let matched = this.$route.matched.filter((item) => item.name)
     const first = matched[0]
     if (first && first.name !== 'dashboard') {
-      matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } } as RouteRecord].concat(matched)
+      matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }} as RouteRecord].concat(matched)
     }
     this.breadcrumbs = matched.filter((item) => {
       return item.meta && item.meta.title && item.meta.breadcrumb !== false
@@ -69,15 +60,15 @@ export default class Breadcrumb extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .app-breadcrumb.el-breadcrumb {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 50px;
-    margin-left: 10px;
+.app-breadcrumb.el-breadcrumb {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 50px;
+  margin-left: 10px;
 
-    .no-redirect {
-      color: #97a8be;
-      cursor: text;
-    }
+  .no-redirect {
+    color: #97a8be;
+    cursor: text;
   }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -8,5 +8,12 @@
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+}
 </script>
+
+<style lang="scss">
+#app {
+  height: 100%;
+}
+</style>

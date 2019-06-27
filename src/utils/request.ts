@@ -4,7 +4,7 @@ import { getToken } from '@/utils/auth'
 import { UserModule } from '@/store/modules/user'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_MOCK_API,
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
 
@@ -26,19 +26,20 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     // Some example codes here:
-    // code == 20000: valid
+    // code == 0: valid
     // code == 50008: invalid token
     // code == 50012: already login in other place
     // code == 50014: token expired
     // code == 60204: account or password is incorrect
     // You can change this part for your own usage.
     const res = response.data
-    if (res.code !== 20000) {
+    if (res.code) {
       Message({
         message: res.message,
         type: 'error',
         duration: 5 * 1000
       })
+      // 单点登录
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         MessageBox.confirm(
           '你已被登出，可以取消继续留在该页面，或者重新登录',
@@ -54,9 +55,9 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error('error with code: ' + res.code))
+      return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      return response.data
+      return res.data
     }
   },
   (error) => {
