@@ -1,21 +1,14 @@
 <template>
-  <div class="navbar">
-    <hamburger
-      :toggle-click="toggleSideBar"
-      :is-active="sidebar.opened"
-      class="hamburger-container"
-    />
-    <breadcrumb />
+  <div class="nav-bar">
+    <div class="system-logo"/>
+    <top-nav-menu class="system-menu"/>
     <el-dropdown
       class="avatar-container"
       trigger="click"
     >
       <div class="avatar-wrapper">
-        <img
-          :src="avatar + '?imageView2/1/w/80/h/80'"
-          class="user-avatar"
-        >
-        <i class="el-icon-caret-bottom" />
+        <el-avatar :size="40" :src="avatar + '?imageView2/1/w/80/h/80'"/>
+        <i class="word-welcome">下午好，{{ name }}</i>
       </div>
       <el-dropdown-menu
         slot="dropdown"
@@ -26,14 +19,14 @@
           to="/"
         >
           <el-dropdown-item>
-            Home
+            系统公告
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
           <span
             style="display:block;"
             @click="logout"
-          >LogOut</span>
+          >登出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -41,29 +34,20 @@
 </template>
 
 <script lang="ts">
-import Breadcrumb from '@/components/Breadcrumb/index.vue'
-import Hamburger from '@/components/Hamburger/index.vue'
 import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
+import TopNavMenu from './TopNavMenu.vue'
 
 @Component({
-  components: {
-    Breadcrumb,
-    Hamburger
-  }
+  components: { TopNavMenu }
 })
 export default class Navbar extends Vue {
-  get sidebar() {
-    return AppModule.sidebar
-  }
-
   get avatar() {
     return UserModule.avatar
   }
 
-  private toggleSideBar() {
-    AppModule.ToggleSideBar(false)
+  get name() {
+    return UserModule.name
   }
 
   private logout() {
@@ -75,49 +59,57 @@ export default class Navbar extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.navbar {
-  height: 50px;
-  line-height: 50px;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.12), 0 0 3px 0 rgba(0,0,0,.04);
+@import "~@/styles/variables.scss";
 
-  .hamburger-container {
-    line-height: 58px;
+.nav-bar {
+  padding: 0 30px;
+  height: $topBarH;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  .system-logo {
+    display: inline-flex;
+    order: 0;
+    width: 170px;
     height: 50px;
-    float: left;
-    padding: 0 10px;
+    background: teal;
   }
 
-  .screenfull {
-    position: absolute;
-    right: 90px;
-    top: 16px;
-    color: red;
+  .system-menu {
+    display: inline-flex;
+    order: 1;
+    flex: 2;
+    justify-content: center;
+    border-bottom: none;
+
+    ::v-deep .el-menu-item {
+      padding: 0 40px;
+    }
   }
 
   .avatar-container {
-    height: 50px;
-    display: inline-block;
-    position: absolute;
-    right: 35px;
+    height: 100%;
+    display: inline-flex;
+    order: 2;
+    justify-self: flex-end;
 
     .avatar-wrapper {
       cursor: pointer;
-      margin-top: 5px;
       position: relative;
-      line-height: initial;
+      height: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
 
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
+      .word-welcome {
+        color: #333;
+        font-size: 14px;
+        margin-left: 5px;
       }
 
-      .el-icon-caret-bottom {
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
-      }
     }
   }
 }

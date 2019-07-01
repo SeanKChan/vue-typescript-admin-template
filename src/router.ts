@@ -38,12 +38,12 @@ export default new Router({
     {
       path: '/',
       component: Layout,
-      redirect: '/dashboard',
-      name: 'Dashboard',
+      redirect: '/home',
+      name: 'Home',
       meta: { hidden: true },
       children: [{
-        path: 'dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
+        path: 'home',
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/home/index.vue')
       }]
     },
     {
