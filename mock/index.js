@@ -2,10 +2,12 @@ import Mock from 'mockjs'
 
 import user from './user'
 import table from './table'
+import home from './home'
 
 const mocks = [
   ...user,
-  ...table
+  ...table,
+  ...home
 ]
 
 function param2Obj(url) {

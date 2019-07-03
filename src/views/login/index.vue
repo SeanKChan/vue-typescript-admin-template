@@ -1,5 +1,7 @@
 <template>
   <div class="login-container">
+    <img class="login-slogan" src="~assets/images/login-slogan.png" alt="一站式业务数据化解决方案">
+    <img class="login-assets" src="~assets/images/bg-login-center.png" alt="这是一张图片">
     <el-form
       ref="loginForm"
       :model="loginForm"
@@ -8,7 +10,7 @@
       auto-complete="on"
       label-position="left"
     >
-      <h3 class="title">vue-typescript-admin-template</h3>
+      <p class="title">请使用OA账号密码登录</p>
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon name="user" />
@@ -43,12 +45,11 @@
           type="primary"
           style="width:100%;"
           @click.native.prevent="handleLogin"
-        >Sign in</el-button>
+        >
+          登录
+        </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span>password: admin</span>
-      </div>
+
     </el-form>
   </div>
 </template>
@@ -80,14 +81,14 @@ export default class Login extends Vue {
   private loginForm = {
     username: 'admin',
     password: 'admin'
-  };
+  }
   private loginRules = {
     username: [{ required: true, trigger: 'blur', validator: validateUsername }],
     password: [{ required: true, trigger: 'blur', validator: validatePass }]
-  };
-  private loading = false;
-  private pwdType = 'password';
-  private redirect: string | undefined = undefined;
+  }
+  private loading = false
+  private pwdType = 'password'
+  private redirect: string | undefined = undefined
 
   @Watch('$route', { immediate: true })
   private OnRouteChange(route: Route) {
@@ -145,22 +146,36 @@ export default class Login extends Vue {
 </style>
 
 <style lang="scss" scoped>
-@import "src/styles/variables.scss";
+@import "~@/styles/variables.scss";
 
 .login-container {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: $loginBg;
+  background: url("~assets/images/bg-login.png") no-repeat;
+  background-size: cover;
+
+  .login-slogan {
+    position: absolute;
+    top: 132px;
+    left: 236px;
+    width: 478px;
+    height: 33px;
+  }
+
+  .login-assets {
+    position: absolute;
+    top: 243px;
+    left: 132px;
+    width: 687px;
+    height: 482px;
+  }
 
   .login-form {
     position: absolute;
-    left: 0;
-    right: 0;
-    width: 520px;
-    max-width: 100%;
-    padding: 35px 35px 15px 35px;
-    margin: 120px auto;
+    top: 290px;
+    right: 250px;
+    width: 326px;
   }
 
   .el-input {
@@ -179,6 +194,7 @@ export default class Login extends Vue {
     font-size: 14px;
     color: #fff;
     margin-bottom: 10px;
+
     span {
       &:first-of-type {
         margin-right: 16px;
@@ -195,12 +211,11 @@ export default class Login extends Vue {
   }
 
   .title {
-    font-size: 26px;
-    font-weight: 400;
+    font-size: 14px;
     color: $lightGray;
-    margin: 0px auto 40px auto;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
+    margin-bottom: 15px;
   }
 
   .show-pwd {

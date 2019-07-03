@@ -32,10 +32,6 @@ export default class Layout extends mixins(ResizeMixin) {
       mobile: this.device === DeviceType.Mobile
     }
   }
-
-  private handleClickOutside() {
-    AppModule.CloseSideBar(false)
-  }
 }
 </script>
 
@@ -50,32 +46,9 @@ export default class Layout extends mixins(ResizeMixin) {
   width: 100%;
 }
 
-.drawer-bg {
-  background: #000;
-  opacity: 0.3;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  position: absolute;
-  z-index: 999;
-}
-
 .main-container {
   min-height: 100%;
   position: relative;
-}
-
-.sidebar-container {
-  transition: width 0.28s;
-  width: $sideBarWidth !important;
-  height: 100%;
-  position: fixed;
-  font-size: 0px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1001;
-  overflow: hidden;
 }
 
 .hideSidebar {

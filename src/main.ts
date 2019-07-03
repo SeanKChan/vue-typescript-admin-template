@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import 'normalize.css'
 import ElementUI from 'element-ui'
+import VCharts from 'v-charts'
 import SvgIcon from 'vue-svgicon'
 import '@/styles/index.scss'
 import '@/icons/components'
@@ -18,6 +19,7 @@ Vue.use(SvgIcon, {
   defaultWidth: '1em',
   defaultHeight: '1em'
 })
+Vue.use(VCharts)
 
 Vue.config.productionTip = false
 

@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-active="activeIndex" mode="horizontal" >
+  <el-menu :default-active="activeIndex" mode="horizontal">
     <el-menu-item index="1">
       <router-link to="/home">首页</router-link>
     </el-menu-item>

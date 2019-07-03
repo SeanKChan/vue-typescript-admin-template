@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const resolve = (dir) => path.join(__dirname, dir)
 
 const port = 9527
-const name = 'vue-typescript-admin-template'
+const name = '一站式分析平台'
 
 module.exports = {
   publicPath: '/',
@@ -45,7 +45,8 @@ module.exports = {
     },
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve('src'),
+        'assets': resolve('src/assets')
       }
     },
     plugins: [

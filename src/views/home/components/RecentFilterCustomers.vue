@@ -1,6 +1,13 @@
 <template>
   <div class="recent-filter-customers">
-    <h3>近期筛选的客群</h3>
+    <h4>近期筛选的客群</h4>
+    <dl class="customer-list">
+      <dd><i class="el-icon-s-custom">年轻代发客群</i></dd>
+      <dd><i class="el-icon-s-custom">年轻代发客群</i></dd>
+      <dd><i class="el-icon-s-custom">年轻代发客群</i></dd>
+      <dd><i class="el-icon-s-custom">年轻代发客群</i></dd>
+      <dd><i class="el-icon-s-custom">年轻代发客群</i></dd>
+    </dl>
   </div>
 </template>
 <script lang="ts">
@@ -12,6 +19,12 @@ export default class RecentFilterCustomers extends Vue {
 </script>
 <style lang="scss" scoped>
 .recent-filter-customers {
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
 
+  .customer-list {
+
+  }
 }
 </style>

@@ -18,7 +18,12 @@ service.interceptors.request.use(
     return config
   },
   (error) => {
-    Promise.reject(error)
+    Message({
+      message: error.message,
+      type: 'error',
+      duration: 5 * 1000
+    })
+    return Promise.reject(error)
   }
 )
 

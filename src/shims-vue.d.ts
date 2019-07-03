@@ -3,4 +3,6 @@ declare module '*.vue' {
   export default Vue
 }
 
-declare module 'vue-echarts'
+declare module 'v-charts'
+
+declare module 'vue-count-to'

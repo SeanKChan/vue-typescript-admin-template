@@ -1,14 +1,14 @@
 <template>
   <div class="nav-bar">
-    <div class="system-logo"/>
-    <top-nav-menu class="system-menu"/>
+    <div class="system-logo" />
+    <top-nav-menu class="system-menu" />
     <el-dropdown
       class="avatar-container"
       trigger="click"
     >
       <div class="avatar-wrapper">
-        <el-avatar :size="40" :src="avatar + '?imageView2/1/w/80/h/80'"/>
-        <i class="word-welcome">下午好，{{ name }}</i>
+        <el-avatar :size="35" :src="userAvatar + '?imageView2/1/w/80/h/80'" />
+        <i class="word-welcome">{{ loginInWords }}</i>
       </div>
       <el-dropdown-menu
         slot="dropdown"
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/user'
 import TopNavMenu from './TopNavMenu.vue'
 
@@ -42,12 +42,28 @@ import TopNavMenu from './TopNavMenu.vue'
   components: { TopNavMenu }
 })
 export default class Navbar extends Vue {
-  get avatar() {
+  private loginInWords: string = ''
+
+  get userAvatar(): string {
     return UserModule.avatar
   }
 
-  get name() {
+  get userName(): string {
     return UserModule.name
+  }
+
+  @Watch('userName', { immediate: true })
+  onUserNameChanged(val: string) {
+    const curHour = new Date().getHours()
+    let loginInWords = ''
+    if (curHour <= 12) {
+      loginInWords = '上午好，'
+    } else if (curHour > 12 && curHour <= 18) {
+      loginInWords = '下午好，'
+    } else {
+      loginInWords = '晚上好，'
+    }
+    this.loginInWords = loginInWords + val
   }
 
   private logout() {
@@ -62,9 +78,10 @@ export default class Navbar extends Vue {
 @import "~@/styles/variables.scss";
 
 .nav-bar {
-  padding: 0 30px;
+  padding: 0 40px;
   height: $topBarH;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
+  background: rgba(48, 65, 86, 1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -73,20 +90,36 @@ export default class Navbar extends Vue {
   .system-logo {
     display: inline-flex;
     order: 0;
-    width: 170px;
-    height: 50px;
-    background: teal;
+    width: 152px;
+    height: 35px;
+    background: url("~assets/images/logo_white.png") no-repeat;
+    background-size: contain;
   }
 
   .system-menu {
     display: inline-flex;
     order: 1;
     flex: 2;
+    background: initial;
     justify-content: center;
     border-bottom: none;
 
     ::v-deep .el-menu-item {
       padding: 0 40px;
+      height: 50px;
+      line-height: 50px;
+      color: #fff;
+      border: none;
+
+      &:not(.is-disabled) {
+        &:hover, &:focus {
+          background: linear-gradient(360deg, rgba(42, 78, 165, 1) 0%, rgba(32, 120, 210, 1) 100%);
+        }
+      }
+
+      &.is-active {
+        background: linear-gradient(360deg, rgba(42, 78, 165, 1) 0%, rgba(32, 120, 210, 1) 100%);
+      }
     }
   }
 
@@ -105,9 +138,9 @@ export default class Navbar extends Vue {
       align-items: center;
 
       .word-welcome {
-        color: #333;
+        color: #fff;
         font-size: 14px;
-        margin-left: 5px;
+        margin-left: 11px;
       }
 
     }
