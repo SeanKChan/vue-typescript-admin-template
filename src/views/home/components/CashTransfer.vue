@@ -1,38 +1,40 @@
 <template>
-  <div class="double-line-chart">
+  <div class="cash-transfer">
     <p class="module-title">
-      <span class="module-title--main">储蓄存款时点及AUM时点</span>
+      <span class="module-title--main">同名资金转出【按对手行】</span>
       <em class="module-title--ext">过去15天</em>
     </p>
-    <div class="double-line-chart__content">
-      <div class="double-line-chart__content--board">
-        <div class="deposit">
-          <bill-board
-            card-type="TinyBoard"
-          />
-          <bill-board
-            card-type="TinyBoard"
-          />
-        </div>
-        <div class="chart">
-          <ve-line :data="chartData" />
-        </div>
+    <div class="cash-transfer__content">
+      <div class="cash-transfer__content--board">
+        <ve-histogram :data="chartData"
+                      :grid="grid"
+                      :legend="legend"
+                      :settings="chartSettings"
+                      height="235px">
+        </ve-histogram>
       </div>
-      <div class="double-line-chart__content--chart"></div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import BillBoard from '@/components/BillBoard/index.vue'
 
-@Component({
-  components: {
-    BillBoard
+@Component
+export default class CashTransfer extends Vue {
+  private grid: any = {
+    show: false,
+    bottom: 15
   }
-})
-export default class DoubleLineChart extends Vue {
-  chartData: any = {
+
+  private legend: any = {
+    top: 15
+  }
+
+  private chartSettings: any = {
+    stack: { '用户': [ '访问用户', '下单用户' ] }
+  }
+
+  private chartData: any = {
     columns: [ '日期', '访问用户', '下单用户', '下单率' ],
     rows: [
       { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
@@ -46,7 +48,7 @@ export default class DoubleLineChart extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.double-line-chart {
+.cash-transfer {
   width: 100%;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 3px 6px rgba(4, 23, 62, 0.08);
@@ -61,19 +63,7 @@ export default class DoubleLineChart extends Vue {
     flex-flow: row nowrap;
 
     &--board {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      width: 100%;
-
-      .deposit {
-
-      }
-
-      .chart {
-        flex: 1;
-        margin-left: 131px;
-      }
+      flex: 1;
     }
   }
 }

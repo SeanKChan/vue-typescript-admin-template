@@ -2,31 +2,17 @@
   <div class="nav-bar">
     <div class="system-logo" />
     <top-nav-menu class="system-menu" />
-    <el-dropdown
-      class="avatar-container"
-      trigger="click"
-    >
+    <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <el-avatar :size="35" :src="userAvatar + '?imageView2/1/w/80/h/80'" />
         <i class="word-welcome">{{ loginInWords }}</i>
       </div>
-      <el-dropdown-menu
-        slot="dropdown"
-        class="user-dropdown"
-      >
-        <router-link
-          class="inlineBlock"
-          to="/"
-        >
-          <el-dropdown-item>
-            系统公告
-          </el-dropdown-item>
+      <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <router-link class="inlineBlock" to="/">
+          <el-dropdown-item>系统公告</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span
-            style="display:block;"
-            @click="logout"
-          >登出</span>
+          <span style="display:block;" @click="logout">登出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -86,6 +72,10 @@ export default class Navbar extends Vue {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 
   .system-logo {
     display: inline-flex;
@@ -101,8 +91,9 @@ export default class Navbar extends Vue {
     order: 1;
     flex: 2;
     background: initial;
-    justify-content: center;
+    justify-content: flex-start;
     border-bottom: none;
+    margin-left: 70px;
 
     ::v-deep .el-menu-item {
       padding: 0 40px;
@@ -112,13 +103,22 @@ export default class Navbar extends Vue {
       border: none;
 
       &:not(.is-disabled) {
-        &:hover, &:focus {
-          background: linear-gradient(360deg, rgba(42, 78, 165, 1) 0%, rgba(32, 120, 210, 1) 100%);
+        &:hover,
+        &:focus {
+          background: linear-gradient(
+            360deg,
+            rgba(42, 78, 165, 1) 0%,
+            rgba(32, 120, 210, 1) 100%
+          );
         }
       }
 
       &.is-active {
-        background: linear-gradient(360deg, rgba(42, 78, 165, 1) 0%, rgba(32, 120, 210, 1) 100%);
+        background: linear-gradient(
+          360deg,
+          rgba(42, 78, 165, 1) 0%,
+          rgba(32, 120, 210, 1) 100%
+        );
       }
     }
   }
@@ -142,7 +142,6 @@ export default class Navbar extends Vue {
         font-size: 14px;
         margin-left: 11px;
       }
-
     }
   }
 }

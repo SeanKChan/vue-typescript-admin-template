@@ -6,7 +6,12 @@
     </div>
     <div class="main-container">
       <data-boards />
-      <double-line-chart />
+      <DepositAndAMU />
+      <cash-transfer />
+      <div class="card-wrapper">
+        <CreditCardConversionAnalysis />
+        <CustomerLevelRatio />
+      </div>
     </div>
     <div class="right-container" />
   </div>
@@ -18,14 +23,20 @@ import { UserModule } from '@/store/modules/user'
 import RecentReportTab from './components/RecentReportTab.vue'
 import RecentFilterCustomers from './components/RecentFilterCustomers.vue'
 import DataBoards from './components/DataBoards.vue'
-import DoubleLineChart from './components/DoubleLineChart.vue'
+import DepositAndAMU from './components/DepositAndAMU.vue'
+import CashTransfer from './components/CashTransfer.vue'
+import CreditCardConversionAnalysis from './components/CreditCardConversionAnalysis.vue'
+import CustomerLevelRatio from './components/CustomerLevelRatio.vue'
 
 @Component({
   components: {
     RecentFilterCustomers,
     RecentReportTab,
     DataBoards,
-    DoubleLineChart
+    DepositAndAMU,
+    CashTransfer,
+    CreditCardConversionAnalysis,
+    CustomerLevelRatio
   }
 })
 export default class Home extends Vue {
@@ -41,7 +52,6 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 .home {
-  height: 100%;
   background: #f3f4f9;
   display: flex;
   flex-flow: row nowrap;
@@ -72,6 +82,16 @@ export default class Home extends Vue {
 
     > *:not(:last-child) {
       margin-bottom: 20px;
+    }
+
+    .card-wrapper {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      > * {
+        width: calc(50% - 10px);
+      }
     }
 
     ::v-deep .module-title {

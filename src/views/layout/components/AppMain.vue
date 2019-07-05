@@ -23,7 +23,8 @@ export default class AppMain extends Vue {
 @import "~@/styles/variables.scss";
 
 .app-main {
-  overflow: hidden;
+  overflow: overlay;
+  overflow: auto;
   height: calc(100vh - #{$topBarH});
 }
 </style>

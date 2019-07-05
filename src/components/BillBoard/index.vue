@@ -1,11 +1,13 @@
 <template>
-  <component :is="cardType"
-             :card-icon="cardIcon"
-             :card-title="cardTitle"
-             :card-number="cardNumber"
-             :card-number-suffix="cardNumberSuffix"
-             :year-rate="yearRate"
-             :day-rate="dayRate" />
+  <component
+    :is="cardType"
+    :card-icon="cardIcon"
+    :card-title="cardTitle"
+    :card-number="cardNumber"
+    :card-number-suffix="cardNumberSuffix"
+    :year-rate="yearRate"
+    :day-rate="dayRate"
+  />
 </template>
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator'

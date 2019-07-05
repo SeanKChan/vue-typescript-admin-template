@@ -4,19 +4,26 @@
       <span class="module-title--main">我的数据看板</span>
     </p>
     <div class="data-boards__cards">
-      <bill-board
-        class="data-boards__cards__item"
-        card-icon="customer"
-      />
-      <bill-board
-        class="data-boards__cards__item"
-        card-icon="phone"
-      />
-      <bill-board
-        class="data-boards__cards__item"
-        card-icon="card"
-      />
-
+      <el-row :gutter="20" class="data-boards__cards--wrapper">
+        <el-col :span="8">
+          <bill-board
+            class="data-boards__cards__item"
+            card-icon="customer"
+          />
+        </el-col>
+        <el-col :span="8">
+          <bill-board
+            class="data-boards__cards__item"
+            card-icon="phone"
+          />
+        </el-col>
+        <el-col :span="8">
+          <bill-board
+            class="data-boards__cards__item"
+            card-icon="card"
+          />
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -44,9 +51,12 @@ export default class DataBoards extends Vue {
     align-items: flex-start;
     margin-top: 10px;
 
+    &--wrapper {
+      width: 100%;
+    }
+
     &__item {
-      width: 285px;
-      height: 150px;
+      width: 100%;
     }
   }
 }

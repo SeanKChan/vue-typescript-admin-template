@@ -1,0 +1,92 @@
+<template>
+  <div class="deposit-and-amu">
+    <p class="module-title">
+      <span class="module-title--main">储蓄存款时点及AUM时点</span>
+      <em class="module-title--ext">过去15天</em>
+    </p>
+    <div class="deposit-and-amu__content">
+      <div class="deposit-and-amu__content--board">
+        <div class="deposit">
+          <bill-board
+            card-type="TinyBoard"
+          />
+          <bill-board
+            card-type="TinyBoard"
+          />
+        </div>
+        <div class="chart">
+          <ve-line :data="chartData"
+                   :legend="legend"
+                   :grid="grid"
+                   height="260px" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import BillBoard from '@/components/BillBoard/index.vue'
+
+@Component({
+  components: {
+    BillBoard
+  }
+})
+export default class DepositAndAMU extends Vue {
+  private grid: any = {
+    show: false,
+    bottom: '15'
+  }
+
+  private legend: any = {
+    top: 15
+  }
+
+  private chartData: any = {
+    columns: [ '日期', '访问用户', '下单用户', '下单率' ],
+    rows: [
+      { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+      { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+      { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+      { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+      { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+      { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+    ]
+  }
+}
+</script>
+<style lang="scss" scoped>
+.deposit-and-amu {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 6px rgba(4, 23, 62, 0.08);
+
+  .module-title {
+    border-bottom: 1px solid #E4E4E4;
+  }
+
+  &__content {
+    padding: 0 33px;
+    display: flex;
+    flex-flow: row nowrap;
+
+    &--board {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      width: 100%;
+
+      .deposit {
+
+      }
+
+      .chart {
+        flex: 1;
+        margin-left: 131px;
+
+      }
+    }
+  }
+}
+</style>

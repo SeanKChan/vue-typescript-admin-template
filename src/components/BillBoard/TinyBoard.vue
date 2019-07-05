@@ -39,7 +39,7 @@ import RateArrow from './RateArrow.vue'
   }
 })
 export default class CardBoard extends Vue {
-  @Prop(String) readonly cardTitle!: string
+  @Prop({ type: String, default: '--' }) readonly cardTitle!: string
   @Prop(Number) readonly cardNumber!: number
   @Prop({ default: '', type: String }) readonly cardNumberSuffix!: string
   @Prop(Number) readonly yearRate!: number
@@ -65,7 +65,7 @@ export default class CardBoard extends Vue {
 <style lang="scss" scoped>
 .component-tiny-board {
   position: relative;
-  padding: 13px 0;
+  padding: 15px 0;
 
   &:not(:last-child) {
     border-bottom: 1px solid rgba(228, 228, 228, 1)
@@ -80,11 +80,13 @@ export default class CardBoard extends Vue {
       flex-flow: column nowrap;
 
       &__title {
+        line-height: 20px;
         font-size: 14px;
         font-weight: bold;
       }
 
       &__count {
+        line-height: 40px;
         font-size: 30px;
       }
     }
@@ -95,10 +97,10 @@ export default class CardBoard extends Vue {
     flex-flow: column nowrap;
 
     .compare-year, .compare-day {
-      margin-top: 7px;
       font-size: 12px;
       font-weight: 400;
       color: #000;
+      line-height: 19px;
     }
   }
 }
