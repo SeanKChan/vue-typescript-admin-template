@@ -165,10 +165,10 @@ export default class Login extends Vue {
 
   .login-assets {
     position: absolute;
-    top: 243px;
-    left: 132px;
-    width: 687px;
-    height: 482px;
+    top: 218px;
+    left: 139px;
+    width: 722px;
+    height: 554px;
   }
 
   .login-form {

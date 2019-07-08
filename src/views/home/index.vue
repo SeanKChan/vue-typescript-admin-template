@@ -13,7 +13,10 @@
         <CustomerLevelRatio />
       </div>
     </div>
-    <div class="right-container" />
+    <div class="right-container">
+      <RightCase />
+    </div>
+    <notice-dialog :notice-dialog="PropNoticeDialog" />
   </div>
 </template>
 
@@ -27,25 +30,49 @@ import DepositAndAMU from './components/DepositAndAMU.vue'
 import CashTransfer from './components/CashTransfer.vue'
 import CreditCardConversionAnalysis from './components/CreditCardConversionAnalysis.vue'
 import CustomerLevelRatio from './components/CustomerLevelRatio.vue'
+import RightCase from './components/RightCase.vue'
+import NoticeDialog from './components/NoticeDialog.vue'
+import Driver from 'driver.js'
+import 'driver.js/dist/driver.min.css'
+import steps from './steps'
+import driverOptions from './driverOptions'
+import Cookies from 'js-cookie'
 
 @Component({
   components: {
     RecentFilterCustomers,
     RecentReportTab,
+    RightCase,
     DataBoards,
     DepositAndAMU,
     CashTransfer,
     CreditCardConversionAnalysis,
-    CustomerLevelRatio
+    CustomerLevelRatio,
+    NoticeDialog
   }
 })
 export default class Home extends Vue {
+  PropNoticeDialog: any = {
+    isShow: false
+  }
+
   get name() {
     return UserModule.name
   }
 
   get roles() {
     return UserModule.roles
+  }
+
+  mounted(): void {
+    if (Cookies.get('isGuided')) {
+      return
+    }
+    const driver = new Driver(driverOptions)
+    driver.defineSteps(steps)
+    this.$nextTick(() => {
+      driver.start()
+    })
   }
 }
 </script>
@@ -62,6 +89,7 @@ export default class Home extends Vue {
 
   .left-container {
     width: 352px;
+    flex-basis: 352px;
     display: flex;
     flex-flow: column nowrap;
 
@@ -72,13 +100,13 @@ export default class Home extends Vue {
 
   .right-container {
     width: 352px;
-    background: yellow;
+    flex-basis: 352px;
   }
 
   .main-container {
-    flex: 1;
     margin: 20px 0;
     flex-flow: column nowrap;
+    flex: 1;
 
     > *:not(:last-child) {
       margin-bottom: 20px;

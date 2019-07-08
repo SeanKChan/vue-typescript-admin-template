@@ -15,10 +15,12 @@
           />
         </div>
         <div class="chart">
-          <ve-line :data="chartData"
-                   :legend="legend"
-                   :grid="grid"
-                   height="260px" />
+          <ve-line
+            :data="chartData"
+            :legend="legend"
+            :grid="grid"
+            height="260px"
+          />
         </div>
       </div>
     </div>
@@ -58,9 +60,12 @@ export default class DepositAndAMU extends Vue {
 </script>
 <style lang="scss" scoped>
 .deposit-and-amu {
+  border-radius: 4px;
   width: 100%;
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0px 3px 6px rgba(4, 23, 62, 0.08);
+  &:hover,&:focus {
+    box-shadow: 0 2px 12px 0 rgba(180, 75, 75, 0.1);
+  }
 
   .module-title {
     border-bottom: 1px solid #E4E4E4;

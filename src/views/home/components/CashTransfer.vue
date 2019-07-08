@@ -6,12 +6,13 @@
     </p>
     <div class="cash-transfer__content">
       <div class="cash-transfer__content--board">
-        <ve-histogram :data="chartData"
-                      :grid="grid"
-                      :legend="legend"
-                      :settings="chartSettings"
-                      height="235px">
-        </ve-histogram>
+        <ve-histogram
+          :data="chartData"
+          :grid="grid"
+          :legend="legend"
+          :settings="chartSettings"
+          height="235px"
+        />
       </div>
     </div>
   </div>
@@ -51,7 +52,9 @@ export default class CashTransfer extends Vue {
 .cash-transfer {
   width: 100%;
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0px 3px 6px rgba(4, 23, 62, 0.08);
+  &:hover,&:focus {
+    box-shadow: 0 2px 12px 0 rgba(180, 75, 75, 0.1);
+  }
 
   .module-title {
     border-bottom: 1px solid #E4E4E4;
