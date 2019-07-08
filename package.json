@@ -4,6 +4,7 @@
   "private": true,
   "author": "Chong Guo <armourcy@gmail.com>",
   "scripts": {
+    "start": "yarn serve",
     "serve": "concurrently \"npm:mock\" \"vue-cli-service serve\"",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
@@ -91,7 +92,9 @@
     "@vue/test-utils": "^1.0.0-beta.30",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
+    "commitizen": "^3.1.1",
     "concurrently": "^5.0.0",
+    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.0.1",
     "fibers": "^4.0.2",
@@ -131,5 +134,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/armour/vue-typescript-admin-template.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
