@@ -2,6 +2,12 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 
+export interface IResponseData<T = any> {
+  code: number;
+  data: T;
+  message: string;
+}
+
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   timeout: 5000
@@ -10,14 +16,14 @@ const service = axios.create({
 
 // Request interceptors
 service.interceptors.request.use(
-  (config) => {
+  config => {
     // Add X-Access-Token header to every request, you can add other custom headers here
     if (UserModule.token) {
       config.headers['X-Access-Token'] = UserModule.token
     }
     return config
   },
-  (error) => {
+  error => {
     Promise.reject(error)
   }
 )
@@ -33,7 +39,7 @@ service.interceptors.response.use(
     // code == 50004: invalid user (user not exist)
     // code == 50005: username or password is incorrect
     // You can change this part for your own usage.
-    const res = response.data
+    const res = response.data as IResponseData
     if (res.code !== 20000) {
       Message({
         message: res.message || 'Error',
@@ -55,11 +61,10 @@ service.interceptors.response.use(
         })
       }
       return Promise.reject(new Error(res.message || 'Error'))
-    } else {
-      return response.data
     }
+    return response.data
   },
-  (error) => {
+  error => {
     Message({
       message: error.message,
       type: 'error',

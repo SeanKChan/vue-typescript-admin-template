@@ -1,28 +1,39 @@
-import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators'
+import {
+  VuexModule,
+  Module,
+  Action,
+  Mutation,
+  getModule
+} from 'vuex-module-decorators'
 import { login, logout, getUserInfo } from '@/api/users'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import router, { resetRouter } from '@/router'
 import { PermissionModule } from './permission'
 import { TagsViewModule } from './tags-view'
 import store from '@/store'
+import { IUserInfo } from '@/api/users.ts'
+
+interface IResponseUserInfo {
+  user: IUserInfo;
+}
 
 export interface IUserState {
-  token: string
-  name: string
-  avatar: string
-  introduction: string
-  roles: string[]
-  email: string
+  token: string;
+  name: string;
+  avatar: string;
+  introduction: string;
+  roles: string[];
+  email: string;
 }
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
-  public token = getToken() || ''
-  public name = ''
-  public avatar = ''
-  public introduction = ''
-  public roles: string[] = []
-  public email = ''
+  public token = getToken() || '';
+  public name = '';
+  public avatar = '';
+  public introduction = '';
+  public roles: string[] = [];
+  public email = '';
 
   @Mutation
   private SET_TOKEN(token: string) {
@@ -55,7 +66,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async Login(userInfo: { username: string, password: string}) {
+  public async Login(userInfo: { username: string; password: string }) {
     let { username, password } = userInfo
     username = username.trim()
     const { data } = await login({ username, password })
@@ -75,7 +86,9 @@ class User extends VuexModule implements IUserState {
     if (this.token === '') {
       throw Error('GetUserInfo: token is undefined!')
     }
-    const { data } = await getUserInfo({ /* Your params here */ })
+    const { data } = await getUserInfo<IResponseUserInfo>({
+      /* Your params here */
+    })
     if (!data) {
       throw Error('Verification failed, please Login again.')
     }

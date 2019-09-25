@@ -1,4 +1,17 @@
 import request from '@/utils/request'
+import { AxiosPromise } from 'axios'
+
+export interface IUserInfo {
+  readonly id: number;
+  readonly username: string;
+  password: string;
+  name: string;
+  avatar: string;
+  introduction: string;
+  email: string;
+  phone: string;
+  roles: Array<string>;
+}
 
 export const getUsers = (params: any) =>
   request({
@@ -7,12 +20,12 @@ export const getUsers = (params: any) =>
     params
   })
 
-export const getUserInfo = (data: any) =>
+export const getUserInfo = <T>(data: any) =>
   request({
     url: '/users/info',
     method: 'post',
     data
-  })
+  }) as AxiosPromise<T>
 
 export const getUserByName = (username: string) =>
   request({
