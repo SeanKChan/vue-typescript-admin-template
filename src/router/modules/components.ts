@@ -30,6 +30,12 @@ const componentsRouter: RouteConfig = {
       meta: { title: 'jsonEditor' }
     },
     {
+      path: 'diff-editor',
+      component: () => import(/* webpackChunkName: "diff-editor" */ '@/views/components-demo/diff-editor.vue'),
+      name: 'diffEditorDemo',
+      meta: { title: 'diffEditor' }
+    },
+    {
       path: 'split-pane',
       component: () => import(/* webpackChunkName: "split-pane" */ '@/views/components-demo/split-pane.vue'),
       name: 'SplitPaneDemo',

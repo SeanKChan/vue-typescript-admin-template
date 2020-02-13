@@ -12,6 +12,7 @@ export default {
     tinymce: 'TinyMCE',
     markdown: 'Markdown',
     jsonEditor: 'JSON Editor',
+    diffEditor: 'Diff Editor',
     splitPane: 'パネル',
     avatarUpload: 'アバターアップロード',
     dropzone: 'Dropzone',

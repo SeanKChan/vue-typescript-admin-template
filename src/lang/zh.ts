@@ -12,6 +12,7 @@ export default {
     tinymce: '富文本编辑器',
     markdown: 'Markdown',
     jsonEditor: 'JSON 编辑器',
+    diffEditor: '代码对比器',
     splitPane: 'Splitpane',
     avatarUpload: '头像上传',
     dropzone: 'Dropzone',

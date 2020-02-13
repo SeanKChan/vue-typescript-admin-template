@@ -12,6 +12,7 @@ export default {
     tinymce: 'Tinymce',
     markdown: 'Markdown',
     jsonEditor: 'JSON Editor',
+    diffEditor: 'Diff Editor',
     splitPane: 'SplitPane',
     avatarUpload: 'Avatar Upload',
     dropzone: 'Dropzone',
