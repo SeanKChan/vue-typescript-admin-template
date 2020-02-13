@@ -43,8 +43,13 @@ export default class extends Vue {
 }
 </script>
 
+<<<<<<< HEAD
 <style lang="scss" scoped>
 .components-container {
   /*width: 100%;*/
 }
+=======
+<style lang="scss">
+
+>>>>>>> feat: 添加DiffEditor组件
 </style>

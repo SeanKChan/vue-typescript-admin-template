@@ -47,8 +47,13 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 .diff-editor {
+<<<<<<< HEAD
   width: 100%;
   height: 65vh;
+=======
+  width: 800px;
+  height: 600px;
+>>>>>>> feat: 添加DiffEditor组件
   border: 1px solid grey;
 }
 </style>
