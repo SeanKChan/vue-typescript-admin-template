@@ -33,7 +33,8 @@ export default class extends Vue {
   private modifiedTxt: string = ''
 
   mounted() {
-    Promise.all([fetch('./txt/original.txt').then(response => response.text()), fetch('./txt/modified.txt').then(response => response.text())])
+    Promise.all([fetch('./txt/original.txt').then(response => response.text()),
+      fetch('./txt/modified.txt').then(response => response.text())])
       .then((r) => {
         this.originalTxt = r[0]
         this.modifiedTxt = r[1]
@@ -42,6 +43,8 @@ export default class extends Vue {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+.components-container {
+  /*width: 100%;*/
+}
 </style>

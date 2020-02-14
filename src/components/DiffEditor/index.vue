@@ -37,37 +37,18 @@ export default class extends Vue {
       modified: monaco.editor.createModel(this.modifiedTxt, this.languageType)
     })
   }
-
-  created(): void {
-    // @ts-ignore
-    self.MonacoEnvironment = {
-      getWorkerUrl: function(moduleId:string, label:string) {
-        if (label === 'json') {
-          return './js/json.worker.js'
-        }
-        if (label === 'css') {
-          return './js/css.worker.js'
-        }
-        if (label === 'html') {
-          return './js/html.worker.js'
-        }
-        if (label === 'typescript' || label === 'javascript') {
-          return './js/ts.worker.js'
-        }
-        return './js/editor.worker.js'
-      }
-    }
-  }
   mounted(): void {
-    this.diffEditor = monaco.editor.createDiffEditor(this.diffEditorComponent)
+    this.diffEditor = monaco.editor.createDiffEditor(this.diffEditorComponent, {
+      automaticLayout: true
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .diff-editor {
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 65vh;
   border: 1px solid grey;
 }
 </style>
