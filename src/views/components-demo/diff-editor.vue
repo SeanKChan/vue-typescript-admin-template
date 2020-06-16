@@ -47,4 +47,5 @@ export default class extends Vue {
 .components-container {
   /*width: 100%;*/
 }
+
 </style>
