@@ -2,15 +2,15 @@ import request from '@/utils/request'
 import { AxiosPromise } from 'axios'
 
 export interface IUserInfo {
-  readonly id: number;
-  readonly username: string;
-  password: string;
-  name: string;
-  avatar: string;
-  introduction: string;
-  email: string;
-  phone: string;
-  roles: Array<string>;
+  readonly id: number
+  readonly username: string
+  password: string
+  name: string
+  avatar: string
+  introduction: string
+  email: string
+  phone: string
+  roles: Array<string>
 }
 
 export const getUsers = (params: any) =>

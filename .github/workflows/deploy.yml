@@ -7,18 +7,14 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
-    - name: Yarn install
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: install
-    - name: Yarn build
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: build:prod
+    - name: Install and Build
+      run: |
+          npm install
+          npm run build:prod
     - name: Deploy
       uses: maxheld83/ghpages@v0.2.1
       env:

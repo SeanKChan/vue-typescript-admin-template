@@ -5,25 +5,24 @@ import {
   Mutation,
   getModule
 } from 'vuex-module-decorators'
-import { login, logout, getUserInfo } from '@/api/users'
+import { login, logout, getUserInfo, IUserInfo } from '@/api/users'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import router, { resetRouter } from '@/router'
 import { PermissionModule } from './permission'
 import { TagsViewModule } from './tags-view'
 import store from '@/store'
-import { IUserInfo } from '@/api/users.ts'
 
 interface IResponseUserInfo {
-  user: IUserInfo;
+  user: IUserInfo
 }
 
 export interface IUserState {
-  token: string;
-  name: string;
-  avatar: string;
-  introduction: string;
-  roles: string[];
-  email: string;
+  token: string
+  name: string
+  avatar: string
+  introduction: string
+  roles: string[]
+  email: string
 }
 
 @Module({ dynamic: true, store, name: 'user' })
@@ -66,7 +65,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async Login(userInfo: { username: string; password: string }) {
+  public async Login(userInfo: { username: string, password: string }) {
     let { username, password } = userInfo
     username = username.trim()
     const { data } = await login({ username, password })

@@ -28,9 +28,9 @@ import DiffEditor from '@/components/DiffEditor/index.vue'
   }
 })
 export default class extends Vue {
-  private languageType: string = 'javascript'
-  private originalTxt: string = ''
-  private modifiedTxt: string = ''
+  private languageType = 'javascript'
+  private originalTxt = ''
+  private modifiedTxt = ''
 
   mounted() {
     Promise.all([fetch('./txt/original.txt').then(response => response.text()),

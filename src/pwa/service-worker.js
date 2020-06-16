@@ -8,9 +8,6 @@ self.addEventListener('message', (e) => {
   }
 })
 
-workbox.clientsClaim()
-
-// The precaching code provided by Workbox. You don't need to change this part.
-self.__precacheManifest = [].concat(self.__precacheManifest || [])
-workbox.precaching.suppressWarnings()
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
+/* eslint-disable no-undef */
+workbox.core.clientsClaim()
+workbox.precaching.precacheAndRoute(self.__precacheManifest || [])

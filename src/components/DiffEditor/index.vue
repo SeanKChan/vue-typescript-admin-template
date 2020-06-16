@@ -37,6 +37,7 @@ export default class extends Vue {
       modified: monaco.editor.createModel(this.modifiedTxt, this.languageType)
     })
   }
+
   mounted(): void {
     this.diffEditor = monaco.editor.createDiffEditor(this.diffEditorComponent, {
       automaticLayout: true

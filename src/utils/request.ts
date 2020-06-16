@@ -3,9 +3,9 @@ import { Message, MessageBox } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 
 export interface IResponseData<T = any> {
-  code: number;
-  data: T;
-  message: string;
+  code: number
+  data: T
+  message: string
 }
 
 const service = axios.create({
