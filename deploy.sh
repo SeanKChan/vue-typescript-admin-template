@@ -23,4 +23,6 @@ git commit -m 'deploy'
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 git push -f git@github.com:SeanKChan/vue-typescript-admin-template.git master:gh-pages
 
+echo "open https://seankchan.github.io/vue-typescript-admin-template/
+
 cd -
